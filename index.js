@@ -3,6 +3,7 @@ const app = express()
 const fs = require('fs')
 const morgan = require('morgan')
 const path = require('path')
+const cors = require('cors')
 
 app.use(express.json())
 app.use(express.static('build'))
@@ -35,11 +36,9 @@ app.use(morgan('combined', {
     stream: fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
 }))
 
-
 morgan.token('body', function (req, res) {
     return JSON.stringify(req.body)
 })
-
 
 app.use(morgan(':method :url :status :response-time ms - :res[content-length] :body - :req[content-length]'))
 
