@@ -31,7 +31,7 @@ let persons = [
 ]
 const date = new Date()
 
-aapp.use(morgan('combined', {
+app.use(morgan('combined', {
     stream: fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
 }))
 
