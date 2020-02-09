@@ -96,11 +96,7 @@ app.delete('/api/persons/:id', (req, res) => {
 app.use(morgan('combined', {
     stream: fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
 }))
-/*
-app.get('/', function (req, res) {
-    res.send('hello, world!')
-})
-*/
+
 app.use(morgan('tiny', {
     function(req, res) { return res + req }
 }))
