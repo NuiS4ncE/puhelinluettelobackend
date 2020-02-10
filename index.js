@@ -38,9 +38,7 @@ app.get('/info', (req, res) => {
 
 app.get('/api/persons', (req, res) => {
     const body = req.body
-    if (body.name === undefined) {
-        return response.status(400).json({ error: 'content missing' })
-    }
+    
     Person.find({}).then(persons => {
         res.json(persons.map(person => person.toJSON()))
     }).catch(error => {
