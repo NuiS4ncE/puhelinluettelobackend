@@ -54,43 +54,50 @@ app.get('/info', (req, res) => {
 app.get('/api/persons', (req, res) => {
     Person.find({}).then(persons => {
         res.json(persons.map(person => person.toJSON()))
-    })        
+    }).catch(error => {
+        console.log(error);
+        response.status(404).end()
+    })
 })
 
-    app.get('/api/persons/:id', (req, res) => {
-        Person.findById(req.params.id).then(person => {
-            res.json(person.toJSON())
+app.get('/api/persons/:id', (req, res) => {
+    Person.findById(req.params.id).then(person => {
+        res.json(person.toJSON())
+    }).catch(error => {
+        console.log(error);
+        response.status(404).end()
+    })
+})
+
+app.post('/api/persons', (req, res) => {
+    const body = req.body
+
+    if (!body.number || !body.name) {
+        return res.status(400).json({
+            error: 'content missing'
         })
+    }
+
+    const person = new Person({
+        name: body.name,
+        number: body.number
     })
 
-    app.post('/api/persons', (req, res) => {
-        const body = req.body
-
-        if (!body.number || !body.name) {
-            return res.status(400).json({
-                error: 'content missing'
-            })
-        }
-
-        const person = new Person({
-            name: body.name,
-            number: body.number
-        })
-
-        person.save().then(savedPerson => {
-            res.json(savedPerson.toJSON())
-        })
+    person.save().then(savedPerson => {
+        res.json(savedPerson.toJSON())
     })
+})
 
-    app.delete('/api/persons/:id', (req, res) => {
-        const id = Number(req.params.id)
-        persons = persons.filter(person1 => person1.id !== id)
-
+app.delete('/api/persons/:id', (req, res, next) => {
+    Person.findByIdAndRemove(req.params.id)
+    .then(result => {
         res.status(204).end()
     })
+    .catch(error => next(error))
+})
 
 
-    const PORT = process.env.PORT
-    app.listen(PORT, () => {
-        console.log(`Server running on port ${PORT}`)
-    }) 
+const PORT = process.env.PORT
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`)
+}) 

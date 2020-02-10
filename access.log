@@ -29,3 +29,5 @@ GET / 404 139 - 0.380 ms
 ::ffff:127.0.0.1 - - [10/Feb/2020:17:28:34 +0000] "GET /api/persons HTTP/1.1" 200 76 "-" "vscode-restclient"
 ::ffff:127.0.0.1 - - [10/Feb/2020:17:30:41 +0000] "GET /api/persons HTTP/1.1" 200 76 "-" "vscode-restclient"
 ::ffff:127.0.0.1 - - [10/Feb/2020:17:34:57 +0000] "GET /api/persons HTTP/1.1" 200 157 "-" "vscode-restclient"
+::ffff:127.0.0.1 - - [10/Feb/2020:17:58:08 +0000] "GET /api/persons HTTP/1.1" 200 323 "-" "vscode-restclient"
+::ffff:127.0.0.1 - - [10/Feb/2020:18:00:06 +0000] "GET /api/persons HTTP/1.1" 200 323 "-" "vscode-restclient"
