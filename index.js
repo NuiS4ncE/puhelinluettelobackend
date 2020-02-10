@@ -52,51 +52,45 @@ app.get('/info', (req, res) => {
 
 
 app.get('/api/persons', (req, res) => {
-    res.json(persons)
+    Person.find({}).then(persons => {
+        res.json(persons.map(person => person.toJSON()))
+    })        
 })
 
-app.get('/api/persons/:id', (req, res) => {
-    Person.findById(req.params.id).then(person => {
-        res.json(person.toJSON())
-    })
-})
-
-app.post('/api/persons', (req, res) => {
-    const body = req.body
-
-    if (!body.number || !body.name) {
-        return res.status(400).json({
-            error: 'content missing'
+    app.get('/api/persons/:id', (req, res) => {
+        Person.findById(req.params.id).then(person => {
+            res.json(person.toJSON())
         })
-    }
+    })
 
-    const name = body.name
-    const person2 = persons.find(person => person.name === name)
-    if (person2) {
-        return res.status(400).json({
-            error: 'name must be unique'
+    app.post('/api/persons', (req, res) => {
+        const body = req.body
+
+        if (!body.number || !body.name) {
+            return res.status(400).json({
+                error: 'content missing'
+            })
+        }
+
+        const person = new Person({
+            name: body.name,
+            number: body.number
         })
-    }
 
-    const person = new Person({
-        name: body.name,
-        number: body.number
+        person.save().then(savedPerson => {
+            res.json(savedPerson.toJSON())
+        })
     })
 
-    person.save().then(savedPerson => {
-        res.json(savedPerson.toJSON())
+    app.delete('/api/persons/:id', (req, res) => {
+        const id = Number(req.params.id)
+        persons = persons.filter(person1 => person1.id !== id)
+
+        res.status(204).end()
     })
-})
-
-app.delete('/api/persons/:id', (req, res) => {
-    const id = Number(req.params.id)
-    persons = persons.filter(person1 => person1.id !== id)
-
-    res.status(204).end()
-})
 
 
-const PORT = process.env.PORT
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`)
-}) 
+    const PORT = process.env.PORT
+    app.listen(PORT, () => {
+        console.log(`Server running on port ${PORT}`)
+    }) 
