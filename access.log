@@ -95,3 +95,5 @@ GET / 404 139 - 0.380 ms
 ::1 - - [10/Feb/2020:21:37:07 +0000] "GET /info HTTP/1.1" - - "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36"
 ::1 - - [10/Feb/2020:21:37:11 +0000] "GET /info HTTP/1.1" - - "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36"
 ::1 - - [10/Feb/2020:21:39:32 +0000] "GET /info HTTP/1.1" 200 108 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36"
+::ffff:127.0.0.1 - - [10/Feb/2020:22:07:07 +0000] "GET /api/persons HTTP/1.1" 500 1945 "-" "vscode-restclient"
+::ffff:127.0.0.1 - - [10/Feb/2020:22:07:52 +0000] "GET /api/persons HTTP/1.1" 500 1945 "-" "vscode-restclient"
