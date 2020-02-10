@@ -28,11 +28,19 @@ app.use(morgan(':method :url :status :response-time ms - :res[content-length] :b
 app.use(cors())
 
 app.get('/info', (req, res) => {
-    res.send(`Phonebook has info for ${persons.length} people <br> <br> ${date}`)
+    const num = 0
+    Person.find({}).then(persons => {
+        num = persons.length
+    })
+    res.send(`Phonebook has info for ${num} people <br> <br> ${date}`)
 })
 
 
 app.get('/api/persons', (req, res) => {
+    const body = req.body
+    if (body.content === undefined) {
+        return response.status(400).json({ error: 'content missing' })
+    }
     Person.find({}).then(persons => {
         res.json(persons.map(person => person.toJSON()))
     }).catch(error => {
