@@ -21,12 +21,12 @@ let persons = [
     },
     {
         name: "Dan Abramov",
-        numbeid: "12-43-234345",
+        number: "12-43-234345",
         id: 3
     },
     {
         name: "Mary Poppendieck",
-        numbeid: "39-23-6423122",
+        number: "39-23-6423122",
         id: 4
     }
 ]
