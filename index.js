@@ -12,28 +12,6 @@ app.use(express.json())
 var logger = morgan('body')
 app.use(logger)
 
-let persons = [
-    {
-        name: "Arto Hellas",
-        number: "040-123456",
-        id: 1
-    },
-    {
-        name: "Ada Lovelace",
-        number: "39-44-5323523",
-        id: 4
-    },
-    {
-        name: "Dan Abramov",
-        number: "12-43-234345",
-        id: 3
-    },
-    {
-        name: "Mary Poppendieck",
-        number: "39-23-6423122",
-        id: 4
-    }
-]
 const date = new Date()
 
 
@@ -77,7 +55,7 @@ app.get('/api/persons/:id', (req, res) => {
 })
 
 
-app.post('/api/persons', (req, res) => {
+app.post('/api/persons', (req, res, next) => {
     const body = req.body
 
     if (!body.number || !body.name) {
@@ -90,11 +68,28 @@ app.post('/api/persons', (req, res) => {
         name: body.name,
         number: body.number
     })
-
     person.save().then(savedPerson => {
         res.json(savedPerson.toJSON())
     })
+        .catch(error => next(error))
 })
+
+//if (Person.exists({ name: body.name })) {
+app.put('/api/persons/:id', (req, res, next) => {
+    const body = req.body
+
+    const person = {
+        name: body.name,
+        number: body.number
+    }
+
+    Person.findByIdAndUpdate(req.params.id, person, { new: true })
+        .then(updatedPerson => {
+            res.json(updatedPerson.toJSON())
+        })
+        .catch(error => next(error))
+})
+//}
 
 app.delete('/api/persons/:id', (req, res, next) => {
     Person.findByIdAndRemove(req.params.id)
