@@ -13,3 +13,8 @@ GET / 404 139 - 0.380 ms
 ::1 - - [09/Feb/2020:21:54:44 +0000] "POST /api/persons HTTP/1.1" 200 45 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36"
 ::1 - - [09/Feb/2020:21:54:47 +0000] "OPTIONS /api/persons/5 HTTP/1.1" 204 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36"
 ::1 - - [09/Feb/2020:21:54:47 +0000] "DELETE /api/persons/5 HTTP/1.1" 204 - "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36"
+::1 - - [09/Feb/2020:22:22:40 +0000] "OPTIONS /api/persons HTTP/1.1" 204 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36"
+::1 - - [09/Feb/2020:22:22:40 +0000] "POST /api/persons HTTP/1.1" 200 39 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36"
+::1 - - [09/Feb/2020:22:22:42 +0000] "GET /api/persons HTTP/1.1" 200 265 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36"
+::1 - - [09/Feb/2020:22:22:46 +0000] "OPTIONS /api/persons/5 HTTP/1.1" 204 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36"
+::1 - - [09/Feb/2020:22:22:46 +0000] "DELETE /api/persons/5 HTTP/1.1" 204 - "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36"
